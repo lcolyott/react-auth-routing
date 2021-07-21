@@ -26,8 +26,6 @@ const AppRoute: React.FunctionComponent<AppRouteProps> = (props) => {
         <Route
             {...rest}
             render={(routeProps) => {
-                console.log(auth, isAuthorized, isAuthenticated);
-
                 if (isAuthorized) {
                     return (
                         <Component
