@@ -1,7 +1,7 @@
-import React, { Fragment } from "react";
 import { Home, RouteIndex, Login, Users } from "../../views";
-import { ViewProps } from "../../views/types";
 import { AppRouteProps } from "./types";
+
+const buildAppRoutes = () => { };
 
 const AppRoutes: Record<string, AppRouteProps> = {
     "index": {
@@ -19,14 +19,14 @@ const AppRoutes: Record<string, AppRouteProps> = {
         path: "/home",
         component: Home,
         authorizedRoles: ["user", "admin", "superadmin"],
-        links: ["/users"]
+        // links: ["/users"]
     },
     "users": {
         exact: true,
         path: "/users",
         component: Users,
         authorizedRoles: ["admin", "superadmin"],
-        links: ["/home"]
+        // links: ["/home"]
     },
 };
 

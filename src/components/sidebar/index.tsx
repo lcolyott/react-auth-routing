@@ -1,7 +1,6 @@
+import React from "react";
 import { createStyles, Theme, WithStyles } from "@material-ui/core";
 import { withStyles } from "@material-ui/styles";
-import React from "react";
-import { Link } from "react-router-dom";
 import { BaseViewComponentProps } from "../../views/types";
 
 const SidebarStyles = (theme: Theme) => createStyles({
@@ -11,23 +10,17 @@ const SidebarStyles = (theme: Theme) => createStyles({
     }
 });
 
-interface SidebarProps extends BaseViewComponentProps, WithStyles<typeof SidebarStyles> { };
+type SidebarProps = BaseViewComponentProps & WithStyles<typeof SidebarStyles>;
 
 function Sidebar(props: SidebarProps) {
-    const { classes, links, component: Component, ...rest } = props;
+    const { classes, component: Component, ...rest } = props;
 
     return (
         <React.Fragment>
             <div className={classes.root}>
-                {links?.map((value, index) => {
-                    return (
-                        <Link key={index} to={value} >
-                            {value}
-                        </Link>
-                    );
-                })}
+
             </div>
-            {Component && <Component links={links} {...rest} />}
+            {Component && <Component {...rest} />}
         </React.Fragment>
     );
 };

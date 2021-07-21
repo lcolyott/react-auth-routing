@@ -1,15 +1,12 @@
 import { HashRouterProps, RouteProps } from "react-router-dom";
 import { ApplicationUserRole } from "../auth/types";
 
-interface AppRouterProps extends HashRouterProps {
+export interface AppRouterProps extends HashRouterProps {
 
 };
 
-interface AppRouteProps extends RouteProps {
-    links?: string[];
+export interface AppRouteProps extends RouteProps {
     authorizedRoles?: ApplicationUserRole[];
 };
 
-export { };
-export type { AppRouterProps, AppRouteProps };
 export default AppRouterProps;

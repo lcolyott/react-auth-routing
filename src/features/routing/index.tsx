@@ -4,7 +4,7 @@ import { } from "@material-ui/core";
 import AppRouterProps, { AppRouteProps } from "./types";
 import AppRoutes from "./data";
 import AuthContext from "../auth";
-import { BaseViewComponentProps } from "../../views/types";
+import { ViewProps } from "../../views/types";
 
 const RoutingContext = React.createContext<{
     routeTo: (to: string) => void;
@@ -16,19 +16,22 @@ const AppRoute: React.FunctionComponent<AppRouteProps> = (props) => {
     const auth = React.useContext(AuthContext);
     const routing = React.useContext(RoutingContext);
 
-    const { component, links, ...rest } = props;
+    const Component: React.ElementType<ViewProps> = props.component as React.ElementType<ViewProps>;
 
     let isAuthenticated = auth.user != null;
     let isAuthorized: boolean = props.authorizedRoles?.includes(auth.user?.role ?? "unauthorized") ?? true;
 
     return (
         <Route
-            {...rest}
+            {...props as Omit<AppRouteProps, "component">}
             render={(routeProps) => {
-                let Component: React.ElementType<BaseViewComponentProps> = component as React.ElementType<BaseViewComponentProps>;
-
                 if (isAuthorized) {
-                    return <Component links={links} {...routeProps} />
+                    return (
+                        <Component
+                            // links={links}
+                            {...routeProps}
+                        />
+                    );
                 }
 
                 routing.routeTo("");

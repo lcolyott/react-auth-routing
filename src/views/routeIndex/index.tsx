@@ -1,9 +1,10 @@
 import React from "react";
 import AuthContext from "../../features/auth";
 import { RoutingConsumer } from "../../features/routing";
-import { withView } from "../../hooks";
+import withView from "../hooks";
+import { BaseViewComponentProps } from "../types";
 
-const RouteIndex: React.FunctionComponent<any> = (props) => {
+const RouteIndex: React.FunctionComponent<BaseViewComponentProps> = (props) => {
     const auth = React.useContext(AuthContext);
     const authenticated = auth.user != undefined;
 

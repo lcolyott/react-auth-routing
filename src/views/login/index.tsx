@@ -1,8 +1,8 @@
-import { Button, createStyles, Divider, Paper, TextField, Theme, Toolbar, Typography, withStyles, WithStyles } from "@material-ui/core";
+import { Button, createStyles, Paper, TextField, Theme, Toolbar, Typography, withStyles, WithStyles } from "@material-ui/core";
 import { useFormik } from "formik";
 import React from "react";
 import AuthContext from "../../features/auth";
-import { withView } from "../../hooks";
+import withView from "../hooks";
 import { BaseViewComponentProps } from "../types";
 
 const LoginStyles = (theme: Theme) => createStyles({
@@ -26,7 +26,7 @@ const LoginStyles = (theme: Theme) => createStyles({
     }
 });
 
-interface LoginProps extends BaseViewComponentProps, WithStyles<typeof LoginStyles> { };
+type LoginProps = BaseViewComponentProps & WithStyles<typeof LoginStyles>;
 
 const Login = withStyles(LoginStyles, { name: "Login" })((props: LoginProps) => {
     const auth = React.useContext(AuthContext);
