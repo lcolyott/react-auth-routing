@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { HashRouter, HashRouterProps, Switch, Route, RouteProps, RouteComponentProps } from "react-router-dom";
+import { HashRouter, HashRouterProps, Switch, Route } from "react-router-dom";
 import { } from "@material-ui/core";
 import AppRouterProps, { AppRouteProps } from "./types";
 import AppRoutes from "./data";
@@ -17,14 +17,17 @@ const AppRoute: React.FunctionComponent<AppRouteProps> = (props) => {
     const routing = React.useContext(RoutingContext);
 
     const Component: React.ElementType<ViewProps> = props.component as React.ElementType<ViewProps>;
+    const { component, ...rest } = props;
 
     let isAuthenticated = auth.user != null;
     let isAuthorized: boolean = props.authorizedRoles?.includes(auth.user?.role ?? "unauthorized") ?? true;
 
     return (
         <Route
-            {...props as Omit<AppRouteProps, "component">}
+            {...rest}
             render={(routeProps) => {
+                console.log(auth, isAuthorized, isAuthenticated);
+
                 if (isAuthorized) {
                     return (
                         <Component

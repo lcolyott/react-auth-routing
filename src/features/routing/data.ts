@@ -19,14 +19,12 @@ const AppRoutes: Record<string, AppRouteProps> = {
         path: "/home",
         component: Home,
         authorizedRoles: ["user", "admin", "superadmin"],
-        // links: ["/users"]
     },
     "users": {
         exact: true,
         path: "/users",
         component: Users,
         authorizedRoles: ["admin", "superadmin"],
-        // links: ["/home"]
     },
 };
 
